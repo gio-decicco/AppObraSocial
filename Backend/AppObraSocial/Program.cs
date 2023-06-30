@@ -1,3 +1,4 @@
+using AppObraSocial.AutoMapper;
 using AppObraSocial.Data;
 using FluentValidation.AspNetCore;
 using System.Reflection;
@@ -21,6 +22,8 @@ builder.Services.AddFluentValidation(config =>
 {
     config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 });
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddCors(options =>
 {

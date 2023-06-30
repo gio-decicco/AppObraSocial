@@ -20,7 +20,7 @@ public partial class ApplicationContext : DbContext
 
     public virtual DbSet<Log> Logs { get; set; }
 
-    public virtual DbSet<Planes> Planes { get; set; }
+    public virtual DbSet<Plane> Planes { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -31,16 +31,16 @@ public partial class ApplicationContext : DbContext
     {
         modelBuilder.Entity<Cliente>(entity =>
         {
-            entity.HasKey(e => e.IdPlan).HasName("Clientes_pkey");
+            entity.HasKey(e => e.Id).HasName("pk_cliente");
 
-            entity.Property(e => e.IdPlan)
-                .ValueGeneratedNever()
-                .HasColumnName("id_plan");
+            entity.Property(e => e.Id)
+                .UseIdentityAlwaysColumn()
+                .HasColumnName("id");
             entity.Property(e => e.Document).HasColumnName("document");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .HasColumnName("email");
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.IdPlan).HasColumnName("id_plan");
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
                 .HasColumnName("name");
@@ -48,8 +48,8 @@ public partial class ApplicationContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("surname");
 
-            entity.HasOne(d => d.IdPlanNavigation).WithOne(p => p.Cliente)
-                .HasForeignKey<Cliente>(d => d.IdPlan)
+            entity.HasOne(d => d.IdPlanNavigation).WithMany(p => p.Clientes)
+                .HasForeignKey(d => d.IdPlan)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_cliente_plan");
         });
@@ -69,12 +69,12 @@ public partial class ApplicationContext : DbContext
                 .HasColumnName("evento");
         });
 
-        modelBuilder.Entity<Planes>(entity =>
+        modelBuilder.Entity<Plane>(entity =>
         {
             entity.HasKey(e => e.IdPlan).HasName("Planes_pkey");
 
             entity.Property(e => e.IdPlan)
-                .ValueGeneratedNever()
+                .UseIdentityAlwaysColumn()
                 .HasColumnName("id_plan");
             entity.Property(e => e.Cuota).HasColumnName("cuota");
             entity.Property(e => e.Descripcion)

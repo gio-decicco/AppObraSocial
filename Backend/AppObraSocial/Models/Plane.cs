@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AppObraSocial.Models;
 
-public partial class Planes
+public partial class Plane
 {
     public int IdPlan { get; set; }
 
@@ -11,5 +12,6 @@ public partial class Planes
 
     public double Cuota { get; set; }
 
-    public virtual Cliente? Cliente { get; set; }
+    [JsonIgnore]
+    public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 }

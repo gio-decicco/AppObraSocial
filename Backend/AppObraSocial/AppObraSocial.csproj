@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
@@ -23,12 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Clientes\Commands\" />
     <Folder Include="Services\Clientes\Queries\" />
-    <Folder Include="Services\Planes\Commands\" />
-    <Folder Include="Services\Planes\Queries\" />
-    <Folder Include="Validations\Clientes\" />
-    <Folder Include="Validations\Planes\" />
   </ItemGroup>
 
 </Project>

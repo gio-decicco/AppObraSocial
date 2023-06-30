@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace AppObraSocial.Models;
 
@@ -18,6 +17,5 @@ public partial class Cliente
 
     public int IdPlan { get; set; }
 
-    [JsonIgnore]
-    public virtual Planes IdPlanNavigation { get; set; } = null!;
+    public virtual Plane IdPlanNavigation { get; set; } = null!;
 }
